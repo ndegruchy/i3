@@ -4,6 +4,14 @@
 
 set $mod Mod4
 
+# Workspace vars
+set $ws1 "1: general"
+set $ws2 "2: code"
+set $ws3 "3: chat"
+set $ws4 "4: music"
+set $ws5 "5: misc"
+set $ws6 "6: games"
+
 ##########################
 # Window Title Font      #
 ##########################
@@ -15,7 +23,7 @@ font pango:Source Code Pro 9
 # to exist to know an application is open. Keep the normal titlebars, etc, for      #
 # floating windows, though.                                                         #
 #####################################################################################
-new_window 1pixel
+new_window none
 new_float normal
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -35,6 +43,8 @@ bindsym $mod+Shift+p exec --no-startup-id i3lock -c cccccc -e -i /media/Pictures
 bindsym $mod+d exec --no-startup-id rofi -show run
 # Select windows using Rofi
 bindsym $mod+Shift+w exec --no-startup-id rofi -show window
+# Only .desktop entries
+bindsym F2 exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
 
 # Emacs
 bindsym $mod+b exec emacsclient -nc
@@ -93,12 +103,15 @@ bindsym $mod+space focus mode_toggle
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [title="Preferences$"] floating enable
-for_window [title="DownloadThemAll!$"] floating enable
+for_window [class="Deja-dup"] floating enable, normal
 
 # Fullscreen
-for_window [title="^mpv"] fullscreen enable
+for_window [class="^mpv"] fullscreen enable
 for_window [title="Image Viewer$"] fullscreen enable
 for_window [title="^feh"] fullscreen enable
+
+# Window assignment
+assign [class="^mpv"] $ws1
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -107,32 +120,34 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1: www
-bindsym $mod+2 workspace 2: code
-bindsym $mod+3 workspace 3: misc
-bindsym $mod+4 workspace 4: chat
-bindsym $mod+5 workspace 5: music
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2 
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+# bindsym $mod+6 workspace 6
+# bindsym $mod+7 workspace 7
+# bindsym $mod+8 workspace 8
+# bindsym $mod+9 workspace 9
+# bindsym $mod+0 workspace 10
 
 # switch between virtual desktops
 bindsym $mod+Tab workspace next
 bindsym $mod+shift+Tab workspace prev
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1: www
-bindsym $mod+Shift+2 move container to workspace 2: code
-bindsym $mod+Shift+3 move container to workspace 3: misc
-bindsym $mod+Shift+4 move container to workspace 4: chat
-bindsym $mod+Shift+5 move container to workspace 5: music
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3 
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+# bindsym $mod+Shift+6 move container to workspace 6
+# bindsym $mod+Shift+7 move container to workspace 7
+# bindsym $mod+Shift+8 move container to workspace 8
+# bindsym $mod+Shift+9 move container to workspace 9
+# bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -167,11 +182,12 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-workspace "1: www" output DVI-I-2
-workspace "2: code" output DVI-I-2
-workspace "3: misc" output DVI-I-3
-workspace "4: chat" output DVI-I-3
-workspace "5: music" output DVI-I-3
+workspace $ws1 output DVI-I-2
+workspace $ws2 output DVI-I-2
+workspace $ws3 output DVI-I-3
+workspace $ws4 output DVI-I-3
+workspace $ws5 output DVI-I-3
+workspace $ws6 output DVI-I-2
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -191,6 +207,24 @@ bar {
 bindsym $mod+x [urgent=latest] focus
 
 exec --no-startup-id hsetroot -solid "#333333"
+
+set $Locker i3lock && sleep 1
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Pause mode "$mode_system"
 
 #########
 # Theme #
