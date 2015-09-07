@@ -103,7 +103,13 @@ bindsym $mod+space focus mode_toggle
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [title="Preferences$"] floating enable
-for_window [class="Deja-dup"] floating enable, normal
+for_window [class="Deja-dup"] floating enable
+for_window [class="Wine" instance="Hearthstone.exe" title="Hearthstone"] floating enable
+for_window [class="Wine" instance="Diablo III.exe"] floating enable
+for_window [class="Wine" instance="explorer.exe"] floating enable
+for_window [class="Dropbox"] floating enable
+for_window [class="Gimp"] floating enable
+for_window [class="Lxappearance"] floating enable
 
 # Fullscreen
 for_window [class="^mpv"] fullscreen enable
@@ -112,6 +118,9 @@ for_window [title="^feh"] fullscreen enable
 
 # Window assignment
 assign [class="^mpv"] $ws1
+assign [title="^Battle.net"] $ws6
+assign [class="Wine" instance="Diablo III.exe"] $ws6
+assign [class="Wine" instance="explorer.exe"] $ws6
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -126,7 +135,6 @@ bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
-# bindsym $mod+6 workspace 6
 # bindsym $mod+7 workspace 7
 # bindsym $mod+8 workspace 8
 # bindsym $mod+9 workspace 9
@@ -143,7 +151,6 @@ bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
-# bindsym $mod+Shift+6 move container to workspace 6
 # bindsym $mod+Shift+7 move container to workspace 7
 # bindsym $mod+Shift+8 move container to workspace 8
 # bindsym $mod+Shift+9 move container to workspace 9
@@ -208,7 +215,7 @@ bindsym $mod+x [urgent=latest] focus
 
 exec --no-startup-id hsetroot -solid "#333333"
 
-set $Locker i3lock && sleep 1
+set $Locker i3lock -c cccccc -e -i /media/Pictures/i3lock/Sunset.png -t
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
@@ -226,9 +233,9 @@ mode "$mode_system" {
 
 bindsym $mod+Pause mode "$mode_system"
 
-#########
-# Theme #
-#########
+######################
+# "Arch Linux" Theme #
+######################
 
 client.focused #0088CC #0088CC #ffffff #dddddd
 client.focused_inactive #333333 #333333 #888888 #292d2e
