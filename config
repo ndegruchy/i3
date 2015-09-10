@@ -49,7 +49,7 @@ bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
 # Emacs
 bindsym $mod+b exec emacsclient -nc
 # Firefox
-bindsym $mod+n exec firefox >/dev/null
+bindsym $mod+n exec firefox
 # Terminal
 bindsym $mod+Return exec termite
 # File Browser
@@ -103,8 +103,10 @@ bindsym $mod+space focus mode_toggle
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [title="Preferences$"] floating enable
-for_window [class="Deja-dup"] floating enable
+for_window [class="Deja-dup"] floating enable normal 1pixel
 for_window [class="Wine" instance="Hearthstone.exe" title="Hearthstone"] floating enable
+for_window [class="Wine" instance="Battle.net.exe" title="Friends"] floating enable
+for_window [class="Steam" instance="Steam" title="Friends"] floating enable
 for_window [class="Wine" instance="Diablo III.exe"] floating enable
 for_window [class="Wine" instance="explorer.exe"] floating enable
 for_window [class="Dropbox"] floating enable
