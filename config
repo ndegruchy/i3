@@ -107,6 +107,7 @@ for_window [class="Deja-dup"] floating enable normal 1pixel
 for_window [class="Wine" instance="Hearthstone.exe" title="Hearthstone"] floating enable
 for_window [class="Wine" instance="Battle.net.exe" title="Friends"] floating enable
 for_window [class="Steam" instance="Steam" title="Friends"] floating enable
+for_window [class="Steam" instance="Steam" title="^Steam - Update"] floating enable
 for_window [class="Wine" instance="Diablo III.exe"] floating enable
 for_window [class="Wine" instance="explorer.exe"] floating enable
 for_window [class="Dropbox"] floating enable
