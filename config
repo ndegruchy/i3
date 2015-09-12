@@ -124,6 +124,7 @@ assign [class="^mpv"] $ws1
 assign [title="^Battle.net"] $ws6
 assign [class="Wine" instance="Diablo III.exe"] $ws6
 assign [class="Wine" instance="explorer.exe"] $ws6
+assign [class="Steam" instance="Steam"] $ws6
 
 # focus the parent container
 bindsym $mod+a focus parent
