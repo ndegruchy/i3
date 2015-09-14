@@ -117,12 +117,12 @@ for_window [class="Lxappearance"] floating enable
 # Fullscreen
 for_window [class="^mpv"] fullscreen enable
 for_window [title="Image Viewer$"] fullscreen enable
-for_window [title="^feh"] fullscreen enable
+for_window [class="feh"] fullscreen enable
 
 # Window assignment
 assign [class="^mpv"] $ws1
 assign [title="^Battle.net"] $ws6
-assign [title="^feh"] $ws1
+assign [class="feh"] $ws1
 assign [class="Wine" instance="Diablo III.exe"] $ws6
 assign [class="Wine" instance="explorer.exe"] $ws6
 assign [class="Steam" instance="Steam" title="^Steam"] $ws6
