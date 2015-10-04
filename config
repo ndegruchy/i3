@@ -12,6 +12,8 @@ set $ws4 "4: music"
 set $ws5 "5: misc"
 set $ws6 "6: games"
 
+# Lock command
+set $Locker sxlock
 ##########################
 # Window Title Font      #
 ##########################
@@ -37,7 +39,7 @@ bindsym $mod+Shift+q kill
 ####################
 
 # Lock Screen with Win+Shift+P
-bindsym $mod+Shift+p exec --no-startup-id i3lock -c cccccc -e -i /media/Pictures/i3lock/Sunset.png -t
+bindsym $mod+Shift+p exec --no-startup-id $Locker
 
 # Run programs with Rofi
 bindsym $mod+d exec --no-startup-id rofi -show run
@@ -49,7 +51,8 @@ bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
 # Emacs
 bindsym $mod+b exec emacsclient -nc
 # Firefox
-bindsym $mod+n exec firefox
+# bindsym $mod+n exec firefox
+bindsym $mod+n exec inox
 # Terminal
 bindsym $mod+Return exec termite
 # File Browser
@@ -220,7 +223,6 @@ bindsym $mod+x [urgent=latest] focus
 
 exec --no-startup-id hsetroot -solid "#333333"
 
-set $Locker i3lock -c cccccc -e -i /media/Pictures/i3lock/Sunset.png -t
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
