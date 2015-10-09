@@ -11,6 +11,7 @@ set $ws3 "3: chat"
 set $ws4 "4: music"
 set $ws5 "5: misc"
 set $ws6 "6: games"
+set $ws7 "7: graphics"
 
 # Lock command
 set $Locker sxlock
@@ -103,9 +104,9 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # Floating
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [title="Preferences$"] floating enable
+for_window [window_role="pop-up"] floating enable normal 1pixel
+for_window [window_role="task_dialog"] floating enable normal 1pixel
+for_window [title="Preferences$"] floating enable normal 1pixel
 for_window [class="Deja-dup"] floating enable normal 1pixel
 for_window [class="Wine" instance="Hearthstone.exe" title="Hearthstone"] floating enable
 for_window [class="Wine" instance="Battle.net.exe" title="Friends"] floating enable
@@ -114,7 +115,7 @@ for_window [class="Steam" instance="Steam" title="^Steam - Update"] floating ena
 for_window [class="Wine" instance="Diablo III.exe"] floating enable
 for_window [class="Wine" instance="explorer.exe"] floating enable
 for_window [class="Dropbox"] floating enable
-for_window [class="Gimp"] floating enable
+for_window [class="Gimp"] fullscreen enable
 for_window [class="Lxappearance"] floating enable
 
 # Fullscreen
@@ -129,6 +130,7 @@ assign [class="feh"] $ws1
 assign [class="Wine" instance="Diablo III.exe"] $ws6
 assign [class="Wine" instance="explorer.exe"] $ws6
 assign [class="Steam" instance="Steam" title="^Steam"] $ws6
+assign [class="Gimp"] $ws7
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -143,7 +145,7 @@ bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
-# bindsym $mod+7 workspace 7
+bindsym $mod+7 workspace $ws7
 # bindsym $mod+8 workspace 8
 # bindsym $mod+9 workspace 9
 # bindsym $mod+0 workspace 10
@@ -159,10 +161,14 @@ bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
-# bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+7 move container to workspace $ws7
 # bindsym $mod+Shift+8 move container to workspace 8
 # bindsym $mod+Shift+9 move container to workspace 9
 # bindsym $mod+Shift+0 move container to workspace 10
+
+# Move workspace to different monitor
+bindsym $mod+Shift+less move workspace to output left
+bindsym $mod+Shift+greater move workspace to output right
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
