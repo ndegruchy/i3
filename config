@@ -18,7 +18,7 @@ set $Locker sxlock
 ##########################
 # Window Title Font      #
 ##########################
-font pango:Source Code Pro 9
+font pango:Source Code Pro semibold 10 
 
 #####################################################################################
 # == Window borders ==                                                              #
@@ -38,9 +38,6 @@ bindsym $mod+Shift+q kill
 ####################
 # Run Applications #
 ####################
-
-# Lock Screen with Win+Shift+P
-bindsym $mod+Shift+p exec --no-startup-id $Locker
 
 # Run programs with Rofi
 bindsym $mod+d exec --no-startup-id rofi -show run
@@ -174,8 +171,6 @@ bindsym $mod+Shift+greater move workspace to output right
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -214,6 +209,7 @@ workspace $ws6 output DVI-I-2
 # finds out, if available)
 bar {
   status_command i3status
+  font pango:Source Code Pro 9
   colors {
     separator #666666
     background #222222
@@ -228,7 +224,6 @@ bar {
 bindsym $mod+x [urgent=latest] focus
 
 exec --no-startup-id hsetroot -solid "#333333"
-
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
@@ -245,6 +240,8 @@ mode "$mode_system" {
 }
 
 bindsym $mod+Pause mode "$mode_system"
+bindsym $mod+Shift+e mode "$mode_system"
+bindsym $mod+Shift+p exec --no-startup-id $Locker, mode "default"
 
 ######################
 # "Arch Linux" Theme #
