@@ -213,6 +213,7 @@ workspace $ws6 output DVI-I-2
 bar {
   status_command i3status
   font pango:Source Code Pro 9
+  tray_output primary
   colors {
     separator #666666
     background #222222
