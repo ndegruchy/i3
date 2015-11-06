@@ -49,8 +49,8 @@ bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
 # Emacs
 bindsym $mod+b exec emacsclient -nc
 # Firefox
-# bindsym $mod+n exec firefox
-bindsym $mod+n exec inox
+bindsym $mod+n exec firefox
+# bindsym $mod+n exec inox
 # Terminal
 bindsym $mod+Return exec termite
 # File Browser
@@ -101,10 +101,10 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # Floating
-for_window [window_role="pop-up"] floating enable normal 1pixel
-for_window [window_role="task_dialog"] floating enable normal 1pixel
-for_window [title="Preferences$"] floating enable normal 1pixel
-for_window [class="Deja-dup"] floating enable normal 1pixel
+for_window [window_role="pop-up"] floating enable border pixel 1
+for_window [window_role="task_dialog"] floating enable border pixel 1
+for_window [title="Preferences$"] floating enable border pixel 1
+for_window [class="Deja-dup"] floating enable border pixel 1
 for_window [class="Wine" instance="Hearthstone.exe" title="Hearthstone"] floating enable
 for_window [class="Wine" instance="Battle.net.exe" title="Friends"] floating enable
 for_window [class="Steam" instance="Steam" title="Friends"] floating enable
@@ -115,6 +115,7 @@ for_window [class="Wine" instance="explorer.exe"] floating enable
 for_window [class="Dropbox"] floating enable
 for_window [class="Gimp"] fullscreen enable
 for_window [class="Lxappearance"] floating enable
+for_window [class="Firefox" instance="Places"] floating enable border pixel 1
 
 # Fullscreen
 for_window [class="^mpv"] fullscreen enable
