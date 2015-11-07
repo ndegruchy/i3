@@ -116,6 +116,7 @@ for_window [class="Dropbox"] floating enable
 for_window [class="Gimp"] fullscreen enable
 for_window [class="Lxappearance"] floating enable
 for_window [class="Firefox" instance="Places"] floating enable border pixel 1
+for_window [class="Firefox" instance="Devtools"] floating enable border pixel 1
 
 # Fullscreen
 for_window [class="^mpv"] fullscreen enable
