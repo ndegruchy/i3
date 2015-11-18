@@ -117,6 +117,7 @@ for_window [class="Gimp"] fullscreen enable
 for_window [class="Lxappearance"] floating enable
 for_window [class="Firefox" instance="Places"] floating enable border pixel 1
 for_window [class="Firefox" instance="Devtools"] floating enable border pixel 1
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable border normal
 
 # Fullscreen
 for_window [class="^mpv"] fullscreen enable
@@ -131,7 +132,6 @@ assign [class="Wine" instance="Diablo III.exe"] $ws6
 assign [class="Wine" instance="explorer.exe"] $ws6
 assign [class="Steam" instance="Steam" title="^Steam"] $ws6
 assign [class="Gimp"] $ws7
-assign [instance="jetbrains-phpstorm"]=$ws6
 
 # focus the parent container
 bindsym $mod+a focus parent
