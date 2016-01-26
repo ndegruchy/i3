@@ -108,6 +108,7 @@ for_window [window_role="task_dialog"] floating enable border pixel 1
 for_window [title="Preferences$"] floating enable border pixel 1
 for_window [title="^DownThemAll!"] floating enable border normal
 for_window [title="^Add Downloads"] floating enable border normal
+for_window [title="PC\ Viewer$"] floating enable border normal
 for_window [class="Deja-dup"] floating enable border pixel 1
 for_window [class="Wine" instance="Hearthstone.exe" title="Hearthstone"] floating enable
 for_window [class="Wine" instance="Battle.net.exe" title="Friends"] floating enable
