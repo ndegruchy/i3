@@ -58,6 +58,10 @@ bindsym $mod+Return exec termite
 # File Browser
 bindsym $mod+p exec thunar
 
+# Screenshots, kind of like MacOS
+bindsym Print exec maim
+bindsym Shift+Print exec maim -s
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
