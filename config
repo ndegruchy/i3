@@ -2,21 +2,26 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# Startup items
+
 set $mod Mod4
 
 # Workspace vars
 set $ws1 "1: general"
 set $ws2 "2: code"
-set $ws3 "3: music"
-set $ws4 "4: misc"
-set $ws5 "5: term"
+set $ws3 "3: games"
+set $ws4 "4: term"
+set $ws5 "5: work"
+set $ws6 "6: files"
+set $ws7 "7: misc"
+set $ws8 "8: music"
 
 # Lock command
-set $Locker sxlock
+set $Locker "$HOME/.local/bin/lock"
 ##########################
 # Window Title Font      #
 ##########################
-font pango:Source Code Pro semibold 10 
+font pango:Inter UI Medium Italic 11
 
 #####################################################################################
 # == Window borders ==                                                              #
@@ -24,8 +29,14 @@ font pango:Source Code Pro semibold 10
 # to exist to know an application is open. Keep the normal titlebars, etc, for      #
 # floating windows, though.                                                         #
 #####################################################################################
-new_window none
+# border pixel 1
+default_border pixel 1
+# new_window none
 new_float normal
+hide_edge_borders smart
+
+# Jump back and forth between workspaces
+workspace_auto_back_and_forth yes
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -38,25 +49,34 @@ bindsym $mod+Shift+q kill
 ####################
 
 # Run programs with Rofi
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show run -theme base16-tomorrow-night -no-case-sensitive
 # Select windows using Rofi
-bindsym $mod+Shift+w exec --no-startup-id rofi -show window
+bindsym $mod+Shift+w exec --no-startup-id rofi -show window -theme base16-tomorrow-night -no-case-sensitive
 # Only .desktop entries
-bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
+bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu -theme base16-tomorrow-night -no-case-sensitive'
 
 # Emacs
-bindsym $mod+b exec emacsclient -nc
+Bindsym $mod+b exec emacsclient -nc
+# Code
+# bindsym $mod+shift+b exec code --user-data-dir /home/ndegruchy/.config/Code\ -\ OSS/ --extensions-dir ~/.config/Code\ -\ OSS/User/extensions
 # Firefox
 bindsym $mod+n exec firefox
 bindsym $mod+shift+n exec firefox --private-window
 # Terminal
-bindsym $mod+Return exec termite
-# File Browser
-bindsym $mod+p exec thunar
+bindsym $mod+Return exec kitty
+# Files
+bindsym $mod+shift+g exec --no-startup-id kitty --title "Ranger File Manager" /usr/bin/fish --command=ranger
+# Feeds
+bindsym $mod+shift+f exec --no-startup-id emacsclient --create-frame --no-wait --eval '(elfeed)'
 
 # Screenshots, kind of like MacOS
-bindsym Print exec maim
-bindsym Shift+Print exec maim -s
+bindsym Print exec maim ~/Pictures/$(date +%s).png
+bindsym Shift+Print exec maim -s ~/Pictures/$(date +%s).png
+
+# Volume Controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id ponymix -d 0 increase 10
+bindsym XF86AudioLowerVolume exec --no-startup-id ponymix -d 0 decrease 10
+bindsym XF86AudioMute exec --no-startup-id ponymix -d 0 toggle
 
 # change focus
 bindsym $mod+j focus left
@@ -102,42 +122,52 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
 # Floating
-for_window [window_role="pop-up"] floating enable border pixel 1
-for_window [window_role="task_dialog"] floating enable border pixel 1
-for_window [title="Preferences$"] floating enable border pixel 1
-for_window [title="^DownThemAll!"] floating enable border normal
-for_window [title="^Add Downloads"] floating enable border normal
-for_window [title="PC\ Viewer$"] floating enable border normal
 for_window [class="Deja-dup"] floating enable border pixel 1
-for_window [class="Wine" instance="Hearthstone.exe" title="Hearthstone"] floating enable
-for_window [class="Wine" instance="Battle.net.exe" title="Friends"] floating enable
-for_window [class="steam" instance="steam"] normal
-for_window [class="Steam" instance="Steam" title="Friends"] floating enable
-for_window [class="Steam" instance="Steam" title="^Steam - Update"] floating enable
-for_window [class="Steam" instance="Steam" title="Chat$"] floating enable
-for_window [class="Wine" instance="Diablo III.exe"] floating enable
-for_window [class="Wine" instance="explorer.exe"] floating enable
 for_window [class="Dropbox"] floating enable
 for_window [class="Gimp"] fullscreen enable
 for_window [class="Lxappearance"] floating enable
-for_window [class="Firefox" instance="Places"] floating enable border normal
-for_window [class="Firefox" instance="Devtools"] floating enable border normal
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable border normal
+for_window [class="Steam" instance="Steam"] normal
+for_window [class="Steam" instance="Steam" title="Chat$"] floating enable
+for_window [class="Steam" instance="Steam" title="Friends"] floating enable
+for_window [class="Steam" instance="Steam" title="^Steam - Update"] floating enable
+for_window [class="Wine" instance="Battle.net.exe" title="Friends"] floating enable
+for_window [class="Wine" instance="Diablo III.exe"] floating enable
+for_window [class="Wine" instance="Hearthstone.exe" title="Hearthstone"] floating enable
+for_window [class="Wine" instance="explorer.exe"] floating enable
+for_window [class="Wine"] floating enable
+for_window [class="quimup"] floating enable border normal 1
+for_window [title="About Mozilla Firefox"] floating enable border pixel 1
+for_window [title="PC\ Viewer$"] floating enable border normal # FSCJ lab viewer software
+for_window [title="Preferences$"] floating enable border pixel 1
+for_window [title="gsimplecal"] floating enable border normal
+for_window [window_role="pop-up"] floating enable border pixel 1
+for_window [window_role="task_dialog"] floating enable border pixel 1
+for_window [window_role="bubble"] floating enable border pixel 1
+for_window [window_role="Preferences"] floating enable border pixel 1
+for_window [window_type="dialog"] floating enable border pixel 1
+for_window [window_type="menu"] floating enable border pixel 1
+
 
 # Fullscreen
 for_window [class="^mpv"] fullscreen enable
-for_window [title="Image Viewer$"] fullscreen enable
 for_window [class="feh"] fullscreen enable
+for_window [class="vlc"] fullscreen enable
+for_window [title="Image Viewer$"] fullscreen enable
 
 # Window assignment
 # assign [class="^mpv"] $ws1
-assign [title="^Battle.net"] $ws4
+# assign [title="^Battle.net"] $ws4
 # assign [class="feh"] $ws1
-assign [class="Wine" instance="Diablo III.exe"] $ws4
-assign [class="Wine" instance="explorer.exe"] $ws4
-assign [class="Steam" instance="Steam" title="^Steam"] $ws4
-assign [class="Gimp"] $ws4
+# assign [class="Wine" instance="Diablo III.exe"] $ws4
+# assign [class="Wine" instance="explorer.exe"] $ws4
+assign [class="Steam" instance="Steam" title="^Steam"] $ws3
+# assign [class="Gimp"] $ws4
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -147,15 +177,15 @@ bindsym $mod+a focus parent
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2 
+bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
-# bindsym $mod+6 workspace $ws6
-# bindsym $mod+7 workspace $ws7
-# bindsym $mod+8 workspace 8
-# bindsym $mod+9 workspace 9
-# bindsym $mod+0 workspace 10
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+# bindsym $mod+9 workspace $ws9
+# bindsym $mod+0 workspace $ws10
 
 # switch between virtual desktops
 bindsym $mod+Tab workspace next
@@ -164,14 +194,14 @@ bindsym $mod+shift+Tab workspace prev
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3 
+bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
-# bindsym $mod+Shift+6 move container to workspace $ws6
-# bindsym $mod+Shift+7 move container to workspace $ws7
-# bindsym $mod+Shift+8 move container to workspace 8
-# bindsym $mod+Shift+9 move container to workspace 9
-# bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+# bindsym $mod+Shift+9 move container to workspace $ws9
+# bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Move workspace to different monitor
 bindsym $mod+Shift+less move workspace to output left
@@ -197,8 +227,8 @@ mode "resize" {
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Down resize shrink height 10 px or 10 ppt
+        bindsym Up resize grow height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape
@@ -208,25 +238,23 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-#workspace $ws1 output DVI-I-2
-#workspace $ws2 output DVI-I-2
-#workspace $ws3 output DVI-I-3
-#workspace $ws4 output DVI-I-3
-#workspace $ws5 output DVI-I-3
-#workspace $ws6 output DVI-I-2
+# workspace $ws1 output DVI-D-0
+# workspace $ws2 output DVI-D-0
+# workspace $ws3 output DVI-D-0
+# workspace $ws4 output DVI-D-0
+# workspace $ws5 output HDMI-0
+# workspace $ws6 output HDMI-0
+# workspace $ws7 output HDMI-0
+# workspace $ws8 output HDMI-0
 
 bindsym $mod+x [urgent=latest] focus
 
-exec --no-startup-id hsetroot -solid "#333333"
-
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+set $mode_system System (l) lock, (e) logout, (Shift+r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+    bindsym Shift+r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -262,7 +290,8 @@ set $base0F #a3685a
 # Basic bar configuration using the Base16 variables.
 bar {
     status_command i3status
-    font pango:Source Code Pro 9
+    font pango:Fira Code 10
+    tray_output primary
 
     colors {
         background $base00
@@ -285,4 +314,4 @@ client.focused_inactive $base01 $base01 $base05 $base03 $base01
 client.unfocused        $base01 $base00 $base05 $base01 $base01
 client.urgent           $base08 $base08 $base00 $base08 $base08
 client.placeholder      $base00 $base00 $base05 $base00 $base00
-client.background $base07
+client.background       $base07
