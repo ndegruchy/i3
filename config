@@ -16,6 +16,9 @@ set $ws6 "6: files"
 set $ws7 "7: misc"
 set $ws8 "8: music"
 
+# Define the terminal emulator here...
+set $Term termite
+
 # Lock command
 set $Locker "$HOME/.local/bin/lock"
 ##########################
@@ -63,11 +66,9 @@ Bindsym $mod+b exec emacsclient -nc
 bindsym $mod+n exec firefox
 bindsym $mod+shift+n exec firefox --private-window
 # Terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec $Term
 # Files
-bindsym $mod+shift+g exec --no-startup-id kitty --title "Ranger File Manager" /usr/bin/fish --command=ranger
-# Feeds
-bindsym $mod+shift+f exec --no-startup-id emacsclient --create-frame --no-wait --eval '(elfeed)'
+bindsym $mod+shift+g exec --no-startup-id $Term --title "Ranger File Manager" --exec=/usr/bin/ranger
 
 # Screenshots, kind of like MacOS
 bindsym Print exec maim ~/Pictures/$(date +%s).png
@@ -129,7 +130,6 @@ bindsym $mod+minus scratchpad show
 # Floating
 for_window [class="Deja-dup"] floating enable border pixel 1
 for_window [class="Dropbox"] floating enable
-for_window [class="Gimp"] fullscreen enable
 for_window [class="Lxappearance"] floating enable
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable border normal
 for_window [class="Steam" instance="Steam"] normal
