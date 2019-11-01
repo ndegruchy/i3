@@ -17,7 +17,7 @@ set $ws7 "7: misc"
 set $ws8 "8: music"
 
 # Define the terminal emulator here...
-set $Term st
+set $Term termite
 
 # Lock command
 set $Locker "$HOME/.local/bin/lock"
@@ -68,7 +68,7 @@ bindsym $mod+shift+n exec firefox --private-window
 # Terminal
 bindsym $mod+Return exec $Term
 # Files
-bindsym $mod+shift+g exec --no-startup-id $Term -T "Ranger File Manager" -e /usr/bin/ranger
+bindsym $mod+shift+g exec --no-startup-id $Term --title "Ranger File Manager" --exec /usr/bin/ranger
 
 # Screenshots, kind of like MacOS
 bindsym Print exec maim ~/Pictures/$(date +%s).png
@@ -78,6 +78,10 @@ bindsym Shift+Print exec maim -s ~/Pictures/$(date +%s).png
 bindsym XF86AudioRaiseVolume exec --no-startup-id ponymix -d 0 increase 10
 bindsym XF86AudioLowerVolume exec --no-startup-id ponymix -d 0 decrease 10
 bindsym XF86AudioMute exec --no-startup-id ponymix -d 0 toggle
+
+# Backlight
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 # change focus
 bindsym $mod+j focus left
