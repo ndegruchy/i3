@@ -66,7 +66,10 @@ bindsym $mod+shift+n exec firefox --private-window
 # Terminal
 bindsym $mod+Return exec $Term -e /usr/bin/fish
 # Files
+bindsym XF86Explorer exec --no-startup-id $Term -T "Ranger File Manager" -e /usr/bin/ranger
 bindsym $mod+shift+g exec --no-startup-id $Term -T "Ranger File Manager" -e /usr/bin/ranger
+# Music
+bindsym $mod+shift+m exec --no-startup-id $Term -T "Music" -e /usr/bin/cmus
 
 # Screenshots, kind of like MacOS
 bindsym Print exec maim ~/Pictures/$(date +%s).png
@@ -80,6 +83,9 @@ bindsym XF86AudioMute exec --no-startup-id ponymix -d 0 toggle
 # Backlight
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+
+# Docked switch
+bindsym XF86Display exec --no-startup-id autorandr --change
 
 # change focus
 bindsym $mod+j focus left
@@ -292,7 +298,7 @@ set $base0F #a3685a
 # Basic bar configuration using the Base16 variables.
 bar {
     status_command i3status
-    font pango:Inter 10
+    font pango:IBM Plex Mono 10
     tray_output primary
 
     colors {
