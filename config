@@ -65,6 +65,7 @@ bindsym $mod+n exec firefox
 bindsym $mod+shift+n exec firefox --private-window
 # Terminal
 bindsym $mod+Return exec $Term -e /usr/bin/fish
+bindsym $mod+shift+Return exec $term -e /usr/bin/fish --private
 # Files
 bindsym XF86Explorer exec --no-startup-id $Term -T "Ranger File Manager" -e /usr/bin/ranger
 bindsym $mod+shift+g exec --no-startup-id $Term -T "Ranger File Manager" -e /usr/bin/ranger
