@@ -86,7 +86,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 # Docked switch
-bindsym XF86Display exec --no-startup-id autorandr --change
+bindsym XF86Display exec --no-startup-id arandr
 
 # change focus
 bindsym $mod+j focus left
@@ -139,6 +139,7 @@ bindsym $mod+minus scratchpad show
 # Floating
 for_window [class="Deja-dup"] floating enable border pixel 1
 for_window [class="Dropbox"] floating enable
+for_window [class="Arandr"] floating enable border normal
 for_window [class="Lxappearance"] floating enable
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable border normal
 for_window [class="Steam" instance="Steam"] normal
