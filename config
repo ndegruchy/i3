@@ -12,12 +12,12 @@ set $ws2 "2: code"
 set $ws3 "3: chat"
 set $ws4 "4: term"
 set $ws5 "5: work"
-set $ws6 "6: files"
-set $ws7 "7: misc"
-set $ws8 "8: music"
+set $ws6 "6: misc"
+# set $ws7 "7: misc"
+# set $ws8 "8: music"
 
 # Define the terminal emulator here...
-set $Term st
+set $Term termite
 
 # Lock command
 set $Locker "$HOME/.local/bin/lock"
@@ -58,17 +58,14 @@ bindsym $mod+Shift+w exec --no-startup-id rofi -show window -theme base16-tomorr
 # Only .desktop entries
 bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu -theme base16-tomorrow-night -no-case-sensitive'
 
-# Emacs
-Bindsym $mod+b exec emacsclient -nc
+# Emacs/Editor
+bindsym $mod+b exec emacsclient -nc
 # Firefox
 bindsym $mod+n exec firefox
 bindsym $mod+shift+n exec firefox --private-window
 # Terminal
 bindsym $mod+Return exec $Term -e /usr/bin/fish
 bindsym $mod+shift+Return exec $term -e /usr/bin/fish --private
-# Files
-bindsym XF86Explorer exec --no-startup-id $Term -T "Ranger File Manager" -e /usr/bin/ranger
-bindsym $mod+shift+g exec --no-startup-id $Term -T "Ranger File Manager" -e /usr/bin/ranger
 # Music
 bindsym $mod+shift+m exec --no-startup-id $Term -T "Music" -e /usr/bin/cmus
 
@@ -192,8 +189,8 @@ bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
+# bindsym $mod+7 workspace $ws7
+# bindsym $mod+8 workspace $ws8
 # bindsym $mod+9 workspace $ws9
 # bindsym $mod+0 workspace $ws10
 
@@ -208,8 +205,8 @@ bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
+# bindsym $mod+Shift+7 move container to workspace $ws7
+# bindsym $mod+Shift+8 move container to workspace $ws8
 # bindsym $mod+Shift+9 move container to workspace $ws9
 # bindsym $mod+Shift+0 move container to workspace $ws10
 
