@@ -9,10 +9,10 @@ set $mod Mod4
 # Workspace vars
 set $ws1 "1: general"
 set $ws2 "2: code"
-set $ws3 "3: chat"
+set $ws3 "3: work"
 set $ws4 "4: term"
-set $ws5 "5: work"
-set $ws6 "6: misc"
+set $ws5 "5: misc"
+# set $ws6 "6: misc"
 # set $ws7 "7: misc"
 # set $ws8 "8: music"
 
@@ -24,7 +24,7 @@ set $Locker "$HOME/.local/bin/lock"
 ##########################
 # Window Title Font      #
 ##########################
-font pango:Inter UI Medium Italic 11
+font pango:Inter Medium Italic 11
 
 #####################################################################################
 # == Window borders ==                                                              #
@@ -52,20 +52,23 @@ bindsym $mod+Shift+q kill
 ####################
 
 # Run programs with Rofi
-bindsym $mod+d exec --no-startup-id rofi -show run -theme base16-tomorrow-night -no-case-sensitive
+bindsym $mod+d exec --no-startup-id rofi -show run
 # Select windows using Rofi
-bindsym $mod+Shift+w exec --no-startup-id rofi -show window -theme base16-tomorrow-night -no-case-sensitive
+bindsym $mod+Shift+w exec --no-startup-id rofi -show window
 # Only .desktop entries
-bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu -theme base16-tomorrow-night -no-case-sensitive'
+bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
 
 # Emacs/Editor
-bindsym $mod+b exec emacsclient -nc
+bindsym $mod+b exec --no-startup-id emacsclient -nc
+bindsym $mod+shift+b exec --no-startup-id fish $HOME/.local/bin/vscode
 # Firefox
 bindsym $mod+n exec firefox
 bindsym $mod+shift+n exec firefox --private-window
 # Terminal
 bindsym $mod+Return exec $Term -e /usr/bin/fish
 bindsym $mod+shift+Return exec $term -e /usr/bin/fish --private
+# Files
+bindsym $mod+shift+G exec --no-startup-id $Term -e /usr/bin/ranger
 # Music
 bindsym $mod+shift+m exec --no-startup-id $Term -T "Music" -e /usr/bin/cmus
 
@@ -137,6 +140,7 @@ bindsym $mod+minus scratchpad show
 for_window [class="Deja-dup"] floating enable border pixel 1
 for_window [class="Dropbox"] floating enable
 for_window [class="Arandr"] floating enable border normal
+for_window [class="Nitrogen"] floating enable border normal
 for_window [class="Lxappearance"] floating enable
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable border normal
 for_window [class="Steam" instance="Steam"] normal
@@ -173,7 +177,7 @@ for_window [title="Image Viewer$"] fullscreen enable
 # assign [class="feh"] $ws1
 # assign [class="Wine" instance="Diablo III.exe"] $ws4
 # assign [class="Wine" instance="explorer.exe"] $ws4
-assign [class="Steam" instance="Steam" title="^Steam"] $ws3
+# assign [class="Steam" instance="Steam" title="^Steam"] $ws3
 # assign [class="Gimp"] $ws4
 
 # focus the parent container
@@ -188,7 +192,7 @@ bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
+# bindsym $mod+6 workspace $ws6
 # bindsym $mod+7 workspace $ws7
 # bindsym $mod+8 workspace $ws8
 # bindsym $mod+9 workspace $ws9
@@ -204,7 +208,7 @@ bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
+# bindsym $mod+Shift+6 move container to workspace $ws6
 # bindsym $mod+Shift+7 move container to workspace $ws7
 # bindsym $mod+Shift+8 move container to workspace $ws8
 # bindsym $mod+Shift+9 move container to workspace $ws9
@@ -256,12 +260,14 @@ bindsym $mod+r mode "resize"
 
 bindsym $mod+x [urgent=latest] focus
 
-set $mode_system System (l) lock, (e) logout, (Shift+r) reboot, (Shift+s) shutdown
+set $mode_system System (l) lock, (e) logout, (Shift+r) reboot, (Shift+s) shutdown, (Shift+u) suspend, (Shift+h) hibernate
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym Shift+r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+    bindsym Shift+u exec --no-startup-id systemctl suspend, mode "default"
+    bindsym Shift+h exec --no-startup-id systemctl hibernate, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
