@@ -60,7 +60,7 @@ bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
 
 # Emacs/Editor
 bindsym $mod+b exec --no-startup-id emacsclient -nc
-bindsym $mod+shift+b exec --no-startup-id fish $HOME/.local/bin/vscode
+# bindsym $mod+shift+b exec --no-startup-id fish $HOME/.local/bin/vscode
 # Firefox
 bindsym $mod+n exec firefox
 bindsym $mod+shift+n exec firefox --private-window
@@ -70,7 +70,7 @@ bindsym $mod+shift+Return exec $term -e /usr/bin/fish --private
 # Files
 bindsym $mod+shift+G exec --no-startup-id $Term -e /usr/bin/ranger
 # Music
-bindsym $mod+shift+m exec --no-startup-id $Term -T "Music" -e /usr/bin/cmus
+# bindsym $mod+shift+m exec --no-startup-id $Term -T "Music" -e /usr/bin/cmus
 
 # Screenshots, kind of like MacOS
 bindsym Print exec maim ~/Pictures/$(date +%s).png
