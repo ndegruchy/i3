@@ -305,6 +305,8 @@ bar {
     status_command i3status
     font pango:IBM Plex Mono 10
     tray_output primary
+    wheel_up_cmd nop
+    wheel_down_cmd nop
 
     colors {
         background $base00
