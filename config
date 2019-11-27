@@ -2,8 +2,6 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-# Startup items
-
 set $mod Mod4
 
 # Workspace vars
@@ -17,7 +15,7 @@ set $ws5 "5: misc"
 # set $ws8 "8: music"
 
 # Define the terminal emulator here...
-set $Term termite
+set $Term st
 
 # Lock command
 set $Locker "$HOME/.local/bin/lock"
@@ -68,7 +66,7 @@ bindsym $mod+shift+n exec firefox --private-window
 bindsym $mod+Return exec $Term -e /usr/bin/fish
 bindsym $mod+shift+Return exec $term -e /usr/bin/fish --private
 # Files
-bindsym $mod+shift+G exec --no-startup-id $Term -e /usr/bin/ranger
+bindsym $mod+shift+G exec --no-startup-id $Term -e /usr/bin/fff
 # Music
 # bindsym $mod+shift+m exec --no-startup-id $Term -T "Music" -e /usr/bin/cmus
 
