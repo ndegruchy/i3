@@ -22,13 +22,13 @@ set $Locker "$HOME/.local/bin/lock"
 ##########################
 # Window Title Font      #
 ##########################
-font pango:Inter Medium Italic 11
+font pango:IBM Plex Mono 11
 
 #####################################################################################
 # == Window borders ==                                                              #
 # Set the default borders of regular windows to 'none', I don't need the titlebar   #
 # to exist to know an application is open. Keep the normal titlebars, etc, for      #
-# floating windows, though.                                                         #
+# windows, though.                                                                 #
 #####################################################################################
 # border pixel 1
 default_border pixel 1
@@ -58,7 +58,6 @@ bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
 
 # Emacs/Editor
 bindsym $mod+b exec --no-startup-id emacsclient -nc
-# bindsym $mod+shift+b exec --no-startup-id fish $HOME/.local/bin/vscode
 # Firefox
 bindsym $mod+n exec firefox
 bindsym $mod+shift+n exec firefox --private-window
@@ -67,8 +66,6 @@ bindsym $mod+Return exec $Term -e /usr/bin/fish
 bindsym $mod+shift+Return exec $term -e /usr/bin/fish --private
 # Files
 bindsym $mod+shift+G exec --no-startup-id $Term -e /usr/bin/fff
-# Music
-# bindsym $mod+shift+m exec --no-startup-id $Term -T "Music" -e /usr/bin/cmus
 
 # Screenshots, kind of like MacOS
 bindsym Print exec maim ~/Pictures/$(date +%s).png
@@ -135,33 +132,24 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # Floating
-for_window [class="Deja-dup"] floating enable border pixel 1
-for_window [class="Dropbox"] floating enable
 for_window [class="Arandr"] floating enable border normal
-for_window [class="Nitrogen"] floating enable border normal
 for_window [class="Lxappearance"] floating enable
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable border normal
 for_window [class="Steam" instance="Steam"] normal
 for_window [class="Steam" instance="Steam" title="Chat$"] floating enable
 for_window [class="Steam" instance="Steam" title="Friends"] floating enable
 for_window [class="Steam" instance="Steam" title="^Steam - Update"] floating enable
-for_window [class="Wine" instance="Battle.net.exe" title="Friends"] floating enable
-for_window [class="Wine" instance="Diablo III.exe"] floating enable
-for_window [class="Wine" instance="Hearthstone.exe" title="Hearthstone"] floating enable
-for_window [class="Wine" instance="explorer.exe"] floating enable
 for_window [class="Wine"] floating enable
-for_window [class="quimup"] floating enable border normal 1
 for_window [title="About Mozilla Firefox"] floating enable border pixel 1
 for_window [title="PC\ Viewer$"] floating enable border normal # FSCJ lab viewer software
+for_window [class="Psi"] floating enable border normal
 for_window [title="Preferences$"] floating enable border pixel 1
-for_window [title="gsimplecal"] floating enable border normal
 for_window [window_role="pop-up"] floating enable border pixel 1
 for_window [window_role="task_dialog"] floating enable border pixel 1
 for_window [window_role="bubble"] floating enable border pixel 1
 for_window [window_role="Preferences"] floating enable border pixel 1
 for_window [window_type="dialog"] floating enable border pixel 1
 for_window [window_type="menu"] floating enable border pixel 1
-
 
 # Fullscreen
 for_window [class="^mpv"] fullscreen enable
@@ -303,8 +291,8 @@ bar {
     status_command i3status
     font pango:IBM Plex Mono 10
     tray_output primary
-    wheel_up_cmd nop
-    wheel_down_cmd nop
+    bindsym button4 nop
+    bindsym button5 nop
 
     colors {
         background $base00
