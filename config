@@ -15,7 +15,7 @@ set $ws5 "5: misc"
 # set $ws8 "8: music"
 
 # Define the terminal emulator here...
-set $Term st
+set $Term lxterminal
 
 # Lock command
 set $Locker "$HOME/.local/bin/lock"
@@ -62,10 +62,11 @@ bindsym $mod+b exec --no-startup-id emacsclient -nc
 bindsym $mod+n exec firefox
 bindsym $mod+shift+n exec firefox --private-window
 # Terminal
-bindsym $mod+Return exec $Term -e /usr/bin/fish
-bindsym $mod+shift+Return exec $term -e /usr/bin/fish --private
+bindsym $mod+Return exec $Term
 # Files
 bindsym $mod+shift+G exec --no-startup-id $Term -e /usr/bin/fff
+# Chat
+bindsym $mod+ctrl+c exec --no-startup-id psi
 
 # Screenshots, kind of like MacOS
 bindsym Print exec maim ~/Pictures/$(date +%s).png
