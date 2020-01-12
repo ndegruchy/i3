@@ -67,6 +67,8 @@ bindsym $mod+Return exec $Term
 bindsym $mod+shift+G exec --no-startup-id $Term -e /usr/bin/fff
 # Chat
 bindsym $mod+ctrl+c exec --no-startup-id psi
+# Feeds
+bindsym $mod+shift+f exec --no-startup-id liferea
 
 # Screenshots, kind of like MacOS
 bindsym Print exec maim ~/Pictures/$(date +%s).png
