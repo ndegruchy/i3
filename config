@@ -15,20 +15,20 @@ set $ws5 "5: misc"
 # set $ws8 "8: music"
 
 # Define the terminal emulator here...
-set $Term lxterminal
+set $Term st
 
 # Lock command
-set $Locker "$HOME/.local/bin/lock"
+set $Locker "i3lock -n -c 708090"
 ##########################
 # Window Title Font      #
 ##########################
-font pango:IBM Plex Mono 11
+font pango:Fira Code 11
 
 #####################################################################################
 # == Window borders ==                                                              #
 # Set the default borders of regular windows to 'none', I don't need the titlebar   #
 # to exist to know an application is open. Keep the normal titlebars, etc, for      #
-# windows, though.                                                                 #
+# windows, though.                                                                  #
 #####################################################################################
 # border pixel 1
 default_border pixel 1
@@ -64,11 +64,7 @@ bindsym $mod+shift+n exec firefox --private-window
 # Terminal
 bindsym $mod+Return exec $Term
 # Files
-bindsym $mod+shift+G exec --no-startup-id $Term -e /usr/bin/fff
-# Chat
-bindsym $mod+ctrl+c exec --no-startup-id psi
-# Feeds
-bindsym $mod+shift+f exec --no-startup-id liferea
+# bindsym $mod+shift+G exec --no-startup-id $Term -e /usr/bin/fff
 
 # Screenshots, kind of like MacOS
 bindsym Print exec maim ~/Pictures/$(date +%s).png
@@ -80,11 +76,12 @@ bindsym XF86AudioLowerVolume exec --no-startup-id ponymix -d 0 decrease 10
 bindsym XF86AudioMute exec --no-startup-id ponymix -d 0 toggle
 
 # Backlight
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
 # Docked switch
 bindsym XF86Display exec --no-startup-id arandr
+bindsym $mod+p exec --no-startup-id arandr
 
 # change focus
 bindsym $mod+j focus left
@@ -135,7 +132,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # Floating
-for_window [class="Arandr"] floating enable border normal
+for_window [class="Arandr"] sticky enable floating enable border normal
 for_window [class="Lxappearance"] floating enable
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable border normal
 for_window [class="Steam" instance="Steam" title="Chat$"] floating enable
@@ -146,6 +143,9 @@ for_window [title="About Mozilla Firefox"] floating enable border pixel 1
 for_window [title="PC\ Viewer$"] floating enable border normal # FSCJ lab viewer software
 for_window [class="Psi"] floating enable border normal
 for_window [title="Preferences$"] floating enable border pixel 1
+for_window [class="^Connman"] floating enable border normal
+for_window [title="^Mumble"] floating enable border normal
+for_window [title="^Solaar"] floating enable border normal
 for_window [window_role="pop-up"] floating enable border pixel 1
 for_window [window_role="task_dialog"] floating enable border pixel 1
 for_window [window_role="bubble"] floating enable border pixel 1
@@ -291,7 +291,7 @@ set $base0F #a3685a
 # Basic bar configuration using the Base16 variables.
 bar {
     status_command i3status
-    font pango:IBM Plex Mono 10
+    font pango:Fira Code 10
     tray_output primary
     bindsym button4 nop
     bindsym button5 nop
