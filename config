@@ -60,11 +60,13 @@ bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
 bindsym $mod+b exec --no-startup-id emacsclient -nc
 # Firefox
 bindsym $mod+n exec firefox
-bindsym $mod+shift+n exec firefox --private-window
+bindsym $mod+Shift+n exec firefox --private-window
 # Terminal
 bindsym $mod+Return exec $Term
 # Files
 # bindsym $mod+shift+G exec --no-startup-id $Term -e /usr/bin/fff
+# Chat
+bindsym XF86LaunchA exec --no-startup-id $Term -e weechat
 
 # Screenshots, kind of like MacOS
 bindsym Print exec maim ~/Pictures/$(date +%s).png
@@ -82,6 +84,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 # Docked switch
 bindsym XF86Display exec --no-startup-id arandr
 bindsym $mod+p exec --no-startup-id arandr
+bindsym $mod+alt+p exec --no-startup-id bash ~/.local/bin/docked
 
 # change focus
 bindsym $mod+j focus left
